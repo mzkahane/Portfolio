@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap);
 
 :root {
     --Secondary: #eff1f1;
@@ -8,10 +8,11 @@
 
 * {
     /* border: 1px dotted red; */
-    font-family: Roboto;
+    font-family: Source Code Pro;
 } 
 
 html, body {
+    background-color: var(--Primary);
     margin: 0px;
     padding: 0px;
     height: 100%;
@@ -19,6 +20,7 @@ html, body {
 }
 
 main {
+    color: darkgray;
     display: flex;
     margin: 0px;
     padding: 0px;
@@ -28,8 +30,9 @@ main {
 
 .left {
     margin-right: 8%;
-    align-content: end;
+    margin-left: 16px;
     margin-bottom: 8px;
+    align-content: end;
 }
 
 .name {
@@ -44,22 +47,23 @@ main {
 }
 
 .right {
-    margin-right: 8%;
+    margin-right: 16px;
     align-content: end;
 }
 
 .headshot {
-    width: 320px;
-    height: 320px;
+    width: 384px;
+    height: 384px;
 }
 
 section {
+    color: darkgray;
     display: flex;
     flex-direction: column;
     height: 33%;
     width: 100%;
     padding: 0px;
-    justify-content: end;
+    justify-content: center;
     text-align: center;
 }
 
@@ -71,9 +75,12 @@ section {
 }
 
 .icon {
-    width: 128px;
-    height: 128px;
-    padding: 8px;
-    border: 4px solid var(--Primary);
+    width: 64px;
+    height: 64px;
+
+    padding: 16px;
+    border: 4px solid darkgray;
     border-radius: 24px;
+
+    filter: invert(83%) sepia(1%) saturate(247%) hue-rotate(314deg) brightness(85%) contrast(79%);
 }
