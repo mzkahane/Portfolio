@@ -1,15 +1,3 @@
-<!-- SECTIONS
-Home
-About
-Projects
-contact
-resume?
-
-change past experiences to  either projects or languages
-change quote to quick about (link to actual about)
-what to do with the top section... what should it link to?
--->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +11,7 @@ what to do with the top section... what should it link to?
         <main>
             <div class="left">
                 <div class="name">Matthew<br>Kahane</div>
-                <p class="desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam laborum voluptatibus, nesciunt aliquam recusandae repellendus natus placeat?</p>
+                <p class="desc">Computer Scientist specializing in software development and machine learning, with experience delivering impactful, scalable solutions across diverse technical domains.</p>
             </div>
 
             <div class="right">
@@ -32,22 +20,41 @@ what to do with the top section... what should it link to?
         </main>
         <section>
             <div class="container">
-                <div class="info">
-                    <img class="icon" src="./images/code-slash.svg" width="128" height="128">
+                <a class="info" href="projects.html">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64 " fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">
+                            <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0m6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0"/>
+                        </svg>
+                    </span>
                     <div class="text">Projects</div>
-                </div>
-                <div class="info">
-                    <img class="icon" src="./images/file-earmark-text.svg" width="128" height="128">
+                </a>
+                <a class="info" href="resume.html">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                            <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/>
+                            <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </span>
                     <div class="text">Resume</div>
-                </div>
-                <div class="info">
-                    <img class="icon" src="./images/person-vcard.svg" width="128" height="128">
+                </a>
+                <a class="info" href="about.html">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
+                            <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
+                            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z"/>
+                        </svg>
+                    </span>
                     <div class="text">About</div>
-                </div>
-                <div class="info">
-                    <img class="icon" src="./images/chat-left-dots.svg" width="128" height="128">
+                </a>
+                <a class="info" href="contact.html">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                   </span>
                     <div class="text">Contact</div>
-                </div>
+                </a>
             </div>
         </section>
         <!-- <footer>This is a Footer</footer> -->
