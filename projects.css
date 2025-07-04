@@ -1,9 +1,14 @@
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap);
 
 :root {
-    --Secondary: #eff1f1;
-    --Primary: #2A3439;
-    --Accent: #45BED6;
+  --Secondary: #eff1f1;
+  --Primary: #2A3439;
+  --Accent: #45BED6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 body {
@@ -30,13 +35,26 @@ header {
 }
 
 .card {
-    padding: 16px;
-    width: 300px;
-    background-color: white;
-    box-shadow: 2px 4px 16px rgba(0,0,0,.06);
-    border-radius: 8px;
+  padding: 16px;
+  width: 256px;
+  background-color: white;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, .06);
+  border-radius: 8px;
 }
 
+.thumbnail {
+  width: 256px;
+  height: 144px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card .title {
+  font-weight: 900;
+  text-align: center;
+  margin: 8px;
+}
 
 .body {
   flex: 1;
@@ -48,4 +66,5 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
+  justify-content: center;
 }
