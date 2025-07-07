@@ -1,9 +1,9 @@
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap);
 
 :root {
-    --Primary: #2C3E50;
-    --Secondary: #ECF0F1;
-    --Accent: #1ABC9C;
+  --Primary: #2C3E50;
+  --Secondary: #ECF0F1;
+  --Accent: #1ABC9C;
 }
 
 a {
@@ -37,4 +37,60 @@ header {
 header a:hover {
   color: var(--Accent);
   transition: 0.2s;
+}
+
+.content {
+  display: flex;
+
+}
+
+.images {
+  text-align: center;
+  margin: 64px;
+}
+
+.screenshot {
+  width: 384px;
+  height: 216px;
+  margin-top: 64px;
+}
+
+.text {
+  margin: 64px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80vw;
+    max-height: 80vh;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+#caption {
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
 }
