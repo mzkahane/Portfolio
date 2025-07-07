@@ -1,14 +1,13 @@
 @import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap);
 
+/* * {
+    border: 1px dotted red;
+} */
+ 
 :root {
     --Primary: #2C3E50;
     --Secondary: #ECF0F1;
     --Accent: #1ABC9C;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }
 
 body {
@@ -34,7 +33,47 @@ header {
   color: var(--Secondary);
 }
 
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
 header a:hover {
   color: var(--Accent);
   transition: 0.2s;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main a {
+  color: var(--Accent);
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 900;
+}
+
+.intro {
+  margin-top: 32px;
+  max-width: 512px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  max-width: 512px;
+}
+
+.entry {
+  margin-bottom: 16px;
+}
+
+.name {
+  font-weight: 900;
 }
