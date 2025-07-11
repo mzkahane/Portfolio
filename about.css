@@ -38,3 +38,25 @@ header a:hover {
   color: var(--Accent);
   transition: 0.2s;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+
+  align-self: center;
+}
+
+.headshot {
+  width: 512px;
+  height: 512px;
+
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+.something {
+  width: 50%;
+  height: 50%;
+}
