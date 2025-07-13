@@ -25,22 +25,72 @@
             image description
         </div>
         <div class="text">
-            <h2>Section header</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt doloremque corporis adipisci
-            exercitationem architecto ut quod dolorum amet ipsa laboriosam deserunt fugiat accusantium perspiciatis
-            mollitia dolores voluptate, commodi natus similique at. Maxime deleniti et, error nulla dolorem accusamus.
-            Reprehenderit animi aspernatur perspiciatis nesciunt maxime. In voluptatibus ipsam laborum voluptates iusto.
-            <h2>Another section</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam et quidem ullam iure pariatur rerum dolores
-            necessitatibus itaque magni veritatis vel inventore, quas ut beatae corporis molestias dolor esse fugiat
-            illum omnis libero quam. Cupiditate sint labore sit ipsa magni consequatur, officia ab eius! Placeat cum
-            veritatis doloribus voluptate commodi!
-            <h2>Third section</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quia doloremque, quam incidunt nostrum
-            perferendis dolorem voluptatum alias ea veritatis! Nisi fuga consequatur quae aspernatur magnam rem
-            voluptate explicabo vitae. Magnam aliquam, nostrum ratione sint temporibus cum nam ipsam laboriosam
-            laudantium id possimus natus officiis unde quo veniam fuga obcaecati eligendi quas eos quidem voluptate iste
-            debitis nesciunt cupiditate. Laborum.
+            <h2>Search Engine</h2>
+            <p>
+                This is a multithreaded search engine built in Java. It began as a semester long project for my Software
+                Development class at USF, and I have continued to improve and add to it since. Given a path or URL, this
+                search engine will recursively traverse the input, following links or folders until there is nothing
+                more to parse. Each file will then be cleaned and parsed into a list of words, those words are then
+                stemmed, and added to an inverted index that links them to the paths of the files the word appears in
+                and the position(s) in each file.
+            </p>
+            <p>
+                When searching, the query will be cleaned and stemmed (unless the exact search flag is given), and the
+                matches will be pulled from the inverted index. The matches are scored based on the number of
+                appearances, the length of file, and finally, alphabetically.
+            </p>
+            <h2>ArgumentParser</h2>
+            <p>
+                This file is where everything starts. Arguments are passed to the search engine in flag-value pairs.
+                This class takes the arguments passed in by the user and parses them into a hashmap with the flags as
+                the keys and the values as the values. An argument is considered a flag if it is a dash "-" character
+                followed by any character that is not a digit or whitespace. For example, "-hello" and "-@world" are
+                considered flags, but "-10" and "- hello" are not.
+            </p>
+            <p>
+                Anything that is not a flag is considered a value. Flags do not have to have an associated value, but
+                each value must be preceded by a flag. Any value that does not have a flag is ignored. If a flag is
+                repeated, its previous value will be overwrittern.
+            </p>
+            <h2>(Multithreaded)FileFinder</h2>
+            <p>
+                The search path that was parsed by the argument parser is then passed to the FileFinder (The
+                multithreaded and the single threaded versions of this and other files share the same logic, except the
+                multithreaded version adds work to the queue and ensures thread safety for concurrent datastructures).
+                It first checks if the path points to a text file or a directory (HTML/website support is in the works).
+                If it is a directory, the program walks the directory and passes each file to the word cleaner to parse,
+                clean, and stem the words before they are added to the inverted index.
+            </p>
+            <h2>WordCleaner</h2>
+            <p>
+                The word cleaner does exactly what it sounds like: it turns a text file into an ordered list of stemmed
+                words. First, the text is cleaned by removing any non-alphabetic characters (e.g. non-letters like
+                digits, punctuation, symbols, and diacritical marks like the umlaut) and converting the remaining
+                characters to lowercase. Next, the text is split by whitespaces and added to an array. Finally, the
+                words in the array are then stemmed using SnowballStemmer. The list of stems can then be input into the
+                inverted index. This class is also capable of getting rid of duplicate stems (they are kept for
+                positioning and count originally), which will be useful for scoring search results later.
+            </p>
+            <h2>WordIndex</h2>
+            <p>
+                This is the data structure that is at the heard of this search engine. it is implemented as a
+                <code>&lt;TreeMap&lt;String, TreeMap&lt;String, ArrayList&lt;Integer&gt;&gt;&gt;</code>. The outermost
+                TreeMap maps the indexed words to the inner TreeMap. The inner TreeMap maps a unique file path to an
+                ArrayList. The ArrayList contains the indexed locations of where the word from the outer TreeMap appears
+                in each of the locations contained in the inner TreeMap.
+            </p>
+            <p>
+                The words in the WordIndex are sorted in
+                alphabetical order, and the class includes an extensive list of methods that can be used to get the
+                number of words, number of appearances in a certain file, a list of all of the words, a list of all of
+                the locations for a given word, and several boolean "has" methods to check for words, locations, or
+                positions. Appropriate getters and setters are also available, of course.
+            </p>
+            <h2>WordSearcher</h2>
+            <p>
+                idk if this is the proper next file in the project flow. A lot of the web/html stuff isnt completely
+                working(?)
+            </p>
         </div>
     </div>
     <!-- Modal for expanded image -->
