@@ -6,11 +6,6 @@
   --Accent: #1ABC9C;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 body {
   font-family: Source Code Pro;
   margin: 0;
@@ -32,6 +27,11 @@ header {
   height: 72px;
   background: var(--Primary);
   color: var(--Secondary);
+}
+
+header a {
+  text-decoration: none;
+  color: inherit;
 }
 
 header a:hover {
@@ -57,6 +57,10 @@ header a:hover {
 
 .text {
   margin: 64px;
+}
+
+a {
+  color: var(--Accent);
 }
 
 .modal {

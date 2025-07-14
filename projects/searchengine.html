@@ -44,8 +44,9 @@
                 This file is where everything starts. Arguments are passed to the search engine in flag-value pairs.
                 This class takes the arguments passed in by the user and parses them into a hashmap with the flags as
                 the keys and the values as the values. An argument is considered a flag if it is a dash "-" character
-                followed by any character that is not a digit or whitespace. For example, "-hello" and "-@world" are
-                considered flags, but "-10" and "- hello" are not.
+                followed by any character that is not a digit or whitespace. For example, <code>-hello</code> and
+                <code>-@world</code> are
+                considered flags, but <code>-10</code> and <code>- hello</code> are not.
             </p>
             <p>
                 Anything that is not a flag is considered a value. Flags do not have to have an associated value, but
@@ -80,17 +81,51 @@
                 in each of the locations contained in the inner TreeMap.
             </p>
             <p>
-                The words in the WordIndex are sorted in
-                alphabetical order, and the class includes an extensive list of methods that can be used to get the
-                number of words, number of appearances in a certain file, a list of all of the words, a list of all of
-                the locations for a given word, and several boolean "has" methods to check for words, locations, or
-                positions. Appropriate getters and setters are also available, of course.
+                The words in the WordIndex are sorted in alphabetical order, and the class includes an extensive list of
+                methods that can be used to get the number of words, number of appearances in a certain file, a list of
+                all of the words, a list of all of the locations for a given word, and several boolean "has" methods to
+                check for words, locations, or positions. Appropriate getters and setters are also available, of course.
             </p>
             <h2>WordSearcher</h2>
             <p>
-                idk if this is the proper next file in the project flow. A lot of the web/html stuff isnt completely
-                working(?)
+                As the name implies, this takes the (stemmed and cleaned) search query, looks for files in the WordIndex
+                that contain words from the query, scores them, and returns them in a nested TreeMap similar to the
+                WordIndex. The process is broken up into two steps. First the class goes through the WordIndex and
+                collects all of the paths that the words in the query appear in. Then, The results are scored by
+                dividing the total word count of the file by the number of appearances in the file. Ties then go to raw
+                appearance count, and finally alphabetical order. The results are added to the data structure and
+                returned.
             </p>
+            <p>
+                If the search query (or queries) are stored in a file, that file gets parsed and each line gets
+                searched. This class also handles the <code>-exact</code> flag, which specifies whether the words in the
+                query need to be exact matches or if stemmed or different tenses are also accceptable.
+            </p>
+            <h2>PrettyJsonWriter</h2>
+            <p>
+                This class is used in a few different places throughout this codebase. Almost everything that gets
+                output to a file first passes through this class. It is made up of a bunch of helper methods that
+                ultimately print out the various nested data structures that are used in this project in a standardized
+                and easy to read JSON format. The WordIndex, Results index (returned by the WordSearcher), and the
+                counts index are the main things that get written to a file using this class.
+            </p>
+            <h2>Next Steps</h2>
+            <p>
+                This is one of those projects that I return to every once in a while to add to or improve, meaning I am
+                constantly relearning how it works and where I left off. That being said, I have a pretty solid idea of
+                what I want to do next.
+            </p>
+            <p>
+                First is HTML support. This is what I am currently working on, so there may be some evidence of that in
+                the GitHub repo (Due to some complicated importing and copying from school repos, the branches are a bit
+                of a mess). The main body of the code should already work with web links, it is just a matter of
+                retrieving the HTML, parsing it, and following sub links. After that I would also like to move the
+                wordIndex to a SQL database as I believe that would simplify a good amount of the searching and
+                inputting I am currently doing. Lastly, creating a proper UI and maybe even turning it into a
+                functioning website would be nice.
+            </p>
+            <h2><a href="https://github.com/mzkahane/SearchEngine/tree/main">Github Repo</a></h2>
+            <sup>(At the time of writing this, project_4_dev is the latest WIP branch)</sup>
         </div>
     </div>
     <!-- Modal for expanded image -->
