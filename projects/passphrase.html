@@ -25,22 +25,40 @@
             image description
         </div>
         <div class="text">
-            <h2>Section header</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt doloremque corporis adipisci
-            exercitationem architecto ut quod dolorum amet ipsa laboriosam deserunt fugiat accusantium perspiciatis
-            mollitia dolores voluptate, commodi natus similique at. Maxime deleniti et, error nulla dolorem accusamus.
-            Reprehenderit animi aspernatur perspiciatis nesciunt maxime. In voluptatibus ipsam laborum voluptates iusto.
-            <h2>Another section</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam et quidem ullam iure pariatur rerum dolores
-            necessitatibus itaque magni veritatis vel inventore, quas ut beatae corporis molestias dolor esse fugiat
-            illum omnis libero quam. Cupiditate sint labore sit ipsa magni consequatur, officia ab eius! Placeat cum
-            veritatis doloribus voluptate commodi!
-            <h2>Third section</h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quia doloremque, quam incidunt nostrum
-            perferendis dolorem voluptatum alias ea veritatis! Nisi fuga consequatur quae aspernatur magnam rem
-            voluptate explicabo vitae. Magnam aliquam, nostrum ratione sint temporibus cum nam ipsam laboriosam
-            laudantium id possimus natus officiis unde quo veniam fuga obcaecati eligendi quas eos quidem voluptate iste
-            debitis nesciunt cupiditate. Laborum.
+            <h2>Passphrase Generator</h2>
+            <p>
+                This little CLI app was a product of my laziness combined with my attempt to be more secure with my
+                online accounts (It was also an excuse to practice C, which I hadn't used in a while). PassphraseGen is
+                a simple C program that generates secure passphrases similar to those created by the diceware method. It
+                uses a customizable wordlist and simulates dice rolls to select words, allowing users to tailor the
+                number of words, the separator between words, and whether the last word is replaced by a number.
+            </p>
+            <h2>Dictionary</h2>
+            <p>
+                Since Diceware is based on a number of standard dice rolls (in this case 4), I needed to create a
+                dictionary that allowed me to look up each word based on the numbers that were rolled. the
+                populateDictionary function in this file does just that, it reads in the list of words from a textfile
+                and populates an array of WordEntry structs, which each hold one word and its corresponding roll.
+            </p>
+            <h2>Main</h2>
+            <p>
+                This file handles all of the flags as well as the construction and output of the final passphrase. The
+                <code>-i</code> flag allows the user to specify how many words are used to make the passphrase, the
+                default being 5 if the flag is not provided. the <code>-s</code> flag allows the user to change the
+                separator between each word of the passphrase. The default is "." to get around a lot of sites
+                requirements for a special character, but it can be changed to any string or character. Many websites
+                also require a number included in the password/passphrase, which is where the <code>-n</code> flag comes
+                in. This flag simply appends the 4 digit number that was rolled for the last spot instead of the word
+                that it corresponds to.
+            </p>
+            <h2>Next Steps</h2>
+            <p>
+                This is a pretty simple project and I am happy with how it works, so its defintely not a priority for me
+                to improve it. If I were to revisit it, I would want to also allow the user to specify how many dice
+                should be rolled, which would require the use of a different word list, something a SQL database might
+                be useful for. I also think a simple UI would be nice as well.
+            </p>
+            <h2><a href="https://github.com/mzkahane/PassphraseGen/tree/main">GitHub Repo</a></h2>
         </div>
     </div>
     <!-- Modal for expanded image -->
