@@ -50,7 +50,7 @@ header a:hover {
 }
 
 .screenshot {
-  width: 384px;
+  width: auto;
   height: 216px;
   margin-top: 64px;
 }
