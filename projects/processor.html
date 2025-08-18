@@ -88,7 +88,24 @@
                 made it thorugh the pipeline yet.
             </p>
             <p>
-                (describe hazards and solutions)
+                The types of hazards that the unit detects are data hazards, control hazards, and structural hazards.
+                Data hazards happen when an instruction depends on the result of a previous instruction that hasn't made
+                it through the pipeline yet. In this case, the hazard unit can either stall the pipeline until the
+                previous instruction completes, or if the data needed is in a following stage, it can forward it to the
+                current stage.
+            </p>
+            <p>
+                Control hazards usually happen as a resulf of branch or jump instructions, where the next
+                instruction to be executed may not be the one immediately following the current instruction. In these
+                cases, the hazard unit will flush the pipeline of the instructions after the branch instruction, and get
+                the new instruction/program counter value to be executed next.
+            </p>
+            <p>
+                Structural hazards occur when two or more instructions are trying to read from or write to the RAM, or
+                other resources like the ALU or register file, at the same time. A lot of these hazards are avoided by
+                the design of other components, like having a dedicated branch unit/ALU and having multiple read ports
+                on the register file. However, if a structural hazard is detected, the hazard unit will stall the
+                pipeline until the resource is free.
             </p>
             <h2><a href="https://github.com/USF-CS315-F23/project07-mzkahane">Github Repo</a></h2>
             <sup>(Requires Digital.exe to open .dig files)</sup>
