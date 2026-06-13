@@ -1,6 +1,7 @@
 import { isKeyDown } from "./input";
 import { testMap } from "../data/maps/testMap";
 import { canMoveTo } from "./collision";
+import { camera } from "./camera.js";
 
 const MOVE_SPEED = 5;
 
@@ -25,6 +26,11 @@ function startMove(map, dx, dy) {
     player.startPixelY = player.pixelY;
     player.moving = canMoveTo(map, player.targetTileX, player.targetTileY);
     player.moveProgress = 0;
+}
+
+export function getPlayerPos() {
+    return {x: player.pixelX, 
+            y: player.pixelY};
 }
 
 // LERP formula: startPixel = (targetPixel - startPixel) * moveProgress
@@ -60,5 +66,5 @@ export function update(dt, tileSize) {
 
 export function draw(ctx, tileSize) {
     ctx.fillStyle = "#808080";
-    ctx.fillRect(player.pixelX + 5, player.pixelY + 5, tileSize - 10, tileSize - 10);
+    ctx.fillRect(Math.floor((player.pixelX + 5) - camera.x), Math.floor((player.pixelY + 5 - camera.y)), tileSize - 10, tileSize - 10);
 }
