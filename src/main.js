@@ -16,7 +16,7 @@ canvas.width = 240;
 canvas.height = 160;
 
 function update(dt) {
-    playerUpdate(dt, TILE_SIZE);
+    playerUpdate(dt, TILE_SIZE, testMap);
     const { x, y } = getPlayerPos();
     follow(x, y, canvas.width, canvas.height, TILE_SIZE);
     return;

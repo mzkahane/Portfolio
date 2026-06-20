@@ -1,5 +1,4 @@
 import { isKeyDown } from "./input";
-import { testMap } from "../data/maps/testMap";
 import { canMoveTo } from "./collision";
 import { camera } from "./camera.js";
 
@@ -34,16 +33,16 @@ export function getPlayerPos() {
 }
 
 // LERP formula: startPixel = (targetPixel - startPixel) * moveProgress
-export function update(dt, tileSize) {
+export function update(dt, tileSize, map) {
     if (!player.moving) {
         if (isKeyDown('w') || isKeyDown('ArrowUp')) {
-            startMove(testMap, 0, -1);
+            startMove(map, 0, -1);
         } else if (isKeyDown('a') || isKeyDown('ArrowLeft')) {
-            startMove(testMap, -1, 0);
+            startMove(map, -1, 0);
         } else if (isKeyDown('s') || isKeyDown('ArrowDown')) {
-            startMove(testMap, 0, 1);
+            startMove(map, 0, 1);
         } else if (isKeyDown('d') || isKeyDown('ArrowRight')) {
-            startMove(testMap, 1, 0);
+            startMove(map, 1, 0);
         }
 
     } else if (player.moving) {
