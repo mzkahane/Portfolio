@@ -1,3 +1,4 @@
+import { resolveTile } from "./assetLoader.js";
 import { camera } from "./camera.js";
 
 export const tileLookup = {
@@ -13,5 +14,27 @@ export function renderMap(ctx, map, tileSize) {
             ctx.fillStyle = tileLookup[map[y][x]];
             ctx.fillRect((x * tileSize) - camera.x, (y * tileSize) - camera.y, tileSize, tileSize);
         }
+    }
+}
+
+export function renderLayer(ctx, layer, tilesets, tileSize) {
+    for (let i = 0; i < layer.data.length; i++) {
+        const gid = layer.data[i];
+        if (gid === 0) continue;
+
+        const tile = resolveTile(gid, tilesets);
+        if (!tile) {
+            console.log('unresolved gid:', gid, gid.toString(16));
+            continue;
+        }
+
+        ctx.drawImage(
+            tile.sourceImage,
+            tile.srcX, tile.srcY, tile.tw, tile.th,
+            (i % layer.width) * tileSize - camera.x,
+            Math.floor(i / layer.width) * tileSize - camera.y,
+            tileSize, tileSize
+        );
+
     }
 }

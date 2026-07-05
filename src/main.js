@@ -1,11 +1,11 @@
 import './style.css';
 import { startLoop } from './engine/gameLoop';
-import { renderMap } from './engine/tileMap';
+import { renderLayer } from './engine/tileMap';
 import { testMap } from './data/maps/testMap';
-import { update as playerUpdate, draw as playerDraw, getPlayerPos } from './engine/player';
+import { update as playerUpdate, draw as playerDraw, getPlayerPos, setStart } from './engine/player';
 import { applyScale } from './engine/scale';
 import { follow } from "./engine/camera";
-import { loadMap, loadTilesets, resolveTile } from "./engine/assetLoader";
+import { loadMap, loadTilesets } from "./engine/assetLoader";
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -16,15 +16,8 @@ const TILE_SIZE = 16;
 canvas.width = 240;
 canvas.height = 160;
 
-loadMap('assets/maps/portfolio-ext.json').then(async data => {
-    const images = await loadTilesets(data.tilesets);
-    console.log(resolveTile(1, data.tilesets));
-    console.log(resolveTile(1523, data.tilesets));
-    console.log(resolveTile(0, data.tilesets));
-});
-
 function update(dt) {
-    playerUpdate(dt, TILE_SIZE, testMap);
+    playerUpdate(dt, TILE_SIZE, data.layers[2]);
     const { x, y } = getPlayerPos();
     follow(x, y, canvas.width, canvas.height, TILE_SIZE);
     return;
@@ -33,8 +26,21 @@ function update(dt) {
 applyScale();
 window.addEventListener('resize', applyScale);
 
+const data = await loadMap('/assets/maps/portfolio-ext.json');
+await loadTilesets(data.tilesets);
+
+setStart(46, 46, TILE_SIZE);
+
 startLoop(update, () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    renderMap(ctx, testMap, TILE_SIZE);
+    
+    for (const layer of data.layers[0].layers) {
+        renderLayer(ctx, layer, data.tilesets, TILE_SIZE);
+    }
+
     playerDraw(ctx, TILE_SIZE);
+
+    for (const layer of data.layers[1].layers) {
+        renderLayer(ctx, layer, data.tilesets, TILE_SIZE);
+    }
 });

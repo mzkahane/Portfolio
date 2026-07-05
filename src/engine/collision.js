@@ -1,8 +1,9 @@
-const walkable = { 0: true, 1: true, 2: false }
-
-export function canMoveTo(map, tileX, tileY) {
-    if (tileY < 0 || tileY >= map.length || tileX < 0 || tileX >= map[0].length) {
+export function canMoveTo(layer, tileX, tileY) {
+    if (tileY < 0 || tileY >= layer.height || tileX < 0 || tileX >= layer.width) {
         return false;
     }
-    return walkable[map[tileY][tileX]];
+
+    const i = (tileY * layer.width) + tileX
+
+    return layer.data[i] === 0;
 }

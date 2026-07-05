@@ -27,6 +27,13 @@ function startMove(map, dx, dy) {
     player.moveProgress = 0;
 }
 
+export function setStart(tileX, tileY,tileSize) {
+    player.tileX = tileX;
+    player.tileY = tileY;
+    player.pixelX = tileX * tileSize;
+    player.pixelY = tileY * tileSize;
+}
+
 export function getPlayerPos() {
     return {x: player.pixelX, 
             y: player.pixelY};
@@ -65,5 +72,5 @@ export function update(dt, tileSize, map) {
 
 export function draw(ctx, tileSize) {
     ctx.fillStyle = "#808080";
-    ctx.fillRect(Math.floor((player.pixelX + 5) - camera.x), Math.floor((player.pixelY + 5 - camera.y)), tileSize - 10, tileSize - 10);
+    ctx.fillRect(Math.floor((player.pixelX + 3) - camera.x), Math.floor((player.pixelY + 3 - camera.y)), tileSize - 6, tileSize - 6);
 }

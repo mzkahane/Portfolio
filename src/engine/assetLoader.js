@@ -24,6 +24,7 @@ export async function loadTilesets(tilesets) {
 
 export function resolveTile(gid, tilesets) {
     if (gid === 0) return null;
+    gid = gid & 0x1FFFFFFF;
 
     for (const tileset of tilesets) {
         if (tileset.firstgid <= gid && gid < tileset.firstgid + tileset.tilecount) {
