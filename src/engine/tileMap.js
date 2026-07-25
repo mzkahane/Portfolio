@@ -20,6 +20,9 @@ export function renderMap(ctx, map, tileSize) {
 export function renderLayer(ctx, layer, tilesets, tileSize) {
     for (let i = 0; i < layer.data.length; i++) {
         const gid = layer.data[i];
+        const dx = (i % layer.width) * tileSize - camera.x;
+        const dy = Math.floor(i / layer.width) * tileSize - camera.y;
+
         if (gid === 0) continue;
 
         const tile = resolveTile(gid, tilesets);
@@ -28,13 +31,31 @@ export function renderLayer(ctx, layer, tilesets, tileSize) {
             continue;
         }
 
-        ctx.drawImage(
-            tile.sourceImage,
-            tile.srcX, tile.srcY, tile.tw, tile.th,
-            (i % layer.width) * tileSize - camera.x,
-            Math.floor(i / layer.width) * tileSize - camera.y,
-            tileSize, tileSize
-        );
+        if (tile.flipH || tile.flipV || tile.flipD) {
+            ctx.save();
+            ctx.translate(dx + tileSize / 2, dy + tileSize / 2);
 
+            if (tile.flipD) {
+                ctx.rotate(-Math.PI / 2);
+                ctx.scale(1, -1);
+            }
+            if (tile.flipH) ctx.scale(-1, 1);
+            if (tile.flipV) ctx.scale(1, -1);
+
+            ctx.drawImage(
+                tile.sourceImage, 
+                tile.srcX, tile.srcY, tile.tw, tile.th,
+                -tileSize / 2, -tileSize / 2,
+                tileSize, tileSize
+            );
+            ctx.restore();
+        } else {
+            ctx.drawImage(
+                tile.sourceImage,
+                tile.srcX, tile.srcY, tile.tw, tile.th,
+                dx, dy,
+                tileSize, tileSize
+            );
+        }
     }
 }

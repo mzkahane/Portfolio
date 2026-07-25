@@ -24,6 +24,11 @@ export async function loadTilesets(tilesets) {
 
 export function resolveTile(gid, tilesets) {
     if (gid === 0) return null;
+
+    const flipH = (gid & 0x80000000) !== 0;
+    const flipV = (gid & 0x40000000) !== 0;
+    const flipD = (gid & 0x20000000) !== 0;
+
     gid = gid & 0x1FFFFFFF;
 
     for (const tileset of tilesets) {
@@ -39,6 +44,9 @@ export function resolveTile(gid, tilesets) {
                 srcY: row * tileset.tileheight,
                 tw: tileset.tilewidth,
                 th: tileset.tileheight,
+                flipH,
+                flipV,
+                flipD,
             }
 
         }
