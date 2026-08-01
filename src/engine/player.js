@@ -23,7 +23,7 @@ function startMove(map, dx, dy) {
 
     player.startPixelX = player.pixelX;
     player.startPixelY = player.pixelY;
-    player.moving = canMoveTo(map, player.targetTileX, player.targetTileY);
+    player.moving = canMoveTo(map, player.targetTileX, player.targetTileY, dx, dy);
     player.moveProgress = 0;
 }
 

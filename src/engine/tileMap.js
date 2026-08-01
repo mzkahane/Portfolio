@@ -1,11 +1,11 @@
 import { resolveTile } from "./assetLoader.js";
 import { camera } from "./camera.js";
 
-export const tileLookup = {
-    0: '#7ec850',
-    1: '#d4a853',
-    2: '#3890e8'
-};
+// export const tileLookup = {
+//     0: '#7ec850',
+//     1: '#d4a853',
+//     2: '#3890e8'
+// };
 
 export function renderMap(ctx, map, tileSize) {
 
