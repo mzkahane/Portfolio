@@ -1,8 +1,20 @@
 import { isKeyDown } from "./input";
 import { canMoveTo } from "./collision";
 import { camera } from "./camera.js";
+import { loadImage } from "./assetLoader.js";
 
-const MOVE_SPEED = 5;
+let spriteImage = null;
+
+const SPRITE_W = 16;
+const SPRITE_H = 19;
+
+const FRAMES = {
+    down:   { still: 0, walkA: 1, walkB: 2 },
+    up:     { still: 3, walkA: 4, walkB: 5 },
+    side:   { still: 6, walkA: 7, walkB: 8 },
+};
+
+const MOVE_SPEED = 3;
 
 const player = {
     tileX: 0, 
@@ -14,10 +26,29 @@ const player = {
     startPixelX: 0, 
     startPixelY: 0, 
     targetTileX: 0, 
-    targetTileY: 0
+    targetTileY: 0,
+    facing: "down",
+    frame: "still",
+    stepParity: false,
 }; 
 
+export async function loadSprite(url) {
+    spriteImage = await loadImage(url);
+}
+
 function startMove(map, dx, dy) {
+    player.stepParity = !player.stepParity;
+
+    if (dx > 0) {
+        player.facing = "right";
+    } else if (dx < 0) {
+        player.facing = "left";
+    } else if (dy > 0) {
+        player.facing = "down";
+    } else if (dy < 0) {
+        player.facing = "up";
+    }
+
     player.targetTileX = player.tileX + dx;
     player.targetTileY = player.tileY + dy;
 
@@ -54,6 +85,13 @@ export function update(dt, tileSize, map) {
 
     } else if (player.moving) {
         if (player.moveProgress < 1) {
+            if (player.moveProgress < 0.5) {
+                player.frame = "still";
+            } else {
+                player.frame = player.stepParity ? "walkA" : "walkB";
+            }
+            
+
             player.moveProgress += dt * MOVE_SPEED;
             player.pixelX = player.startPixelX + ((player.targetTileX * tileSize) - player.startPixelX) * player.moveProgress;
             player.pixelY = player.startPixelY + ((player.targetTileY * tileSize) - player.startPixelY) * player.moveProgress;
@@ -64,6 +102,7 @@ export function update(dt, tileSize, map) {
                 player.pixelX = player.targetTileX * tileSize;
                 player.pixelY = player.targetTileY * tileSize;
                 player.moving = false;
+                player.frame = "still";
             }
         }
 
@@ -71,6 +110,48 @@ export function update(dt, tileSize, map) {
 }
 
 export function draw(ctx, tileSize) {
-    ctx.fillStyle = "#808080";
-    ctx.fillRect(Math.floor((player.pixelX + 3) - camera.x), Math.floor((player.pixelY + 3 - camera.y)), tileSize - 6, tileSize - 6);
+    let drawX = Math.floor(player.pixelX - camera.x);
+    let drawY = Math.floor(player.pixelY - camera.y);
+
+    let col;
+    let flip = false;
+    switch (player.facing) {
+        case "up":
+            col = FRAMES.up[player.frame];
+            break;
+        case "down":
+            col = FRAMES.down[player.frame];
+            break;
+        case "left":
+            col = FRAMES.side[player.frame];
+            break;
+        case "right":
+            col = FRAMES.side[player.frame];
+            flip = true;
+            break;
+    }
+
+    if (flip) {
+        ctx.save();
+        ctx.translate(Math.floor(player.pixelX - camera.x) + SPRITE_W, Math.floor(player.pixelY - camera.y));
+        ctx.scale(-1, 1);
+        drawX = 0; 
+        drawY = 0;
+    }
+
+    if (player.frame === "walkA" || player.frame === "walkB") {
+        drawY += 1;
+    }
+
+    ctx.drawImage(
+        spriteImage,
+        col * SPRITE_W, 0,
+        SPRITE_W, SPRITE_H,
+        drawX, drawY,
+        SPRITE_W, SPRITE_H
+    );
+
+    if (flip) {
+        ctx.restore();
+    }
 }

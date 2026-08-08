@@ -2,7 +2,7 @@ import './style.css';
 import { startLoop } from './engine/gameLoop';
 import { renderLayer } from './engine/tileMap';
 import { testMap } from './data/maps/testMap';
-import { update as playerUpdate, draw as playerDraw, getPlayerPos, setStart } from './engine/player';
+import { update as playerUpdate, draw as playerDraw, getPlayerPos, setStart, loadSprite } from './engine/player';
 import { applyScale } from './engine/scale';
 import { follow } from "./engine/camera";
 import { loadMap, loadTilesets } from "./engine/assetLoader";
@@ -30,6 +30,8 @@ const data = await loadMap('/assets/maps/portfolio-ext.json');
 await loadTilesets(data.tilesets);
 
 setStart(46, 46, TILE_SIZE);
+
+await loadSprite('/assets/sprites/custom-trainer.png');
 
 startLoop(update, () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
